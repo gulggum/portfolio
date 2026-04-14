@@ -1,11 +1,7 @@
-import "./App.css";
+import Router from "./router";
 
 function App() {
-  return (
-    <>
-      <h1>희연이의 포트폴리오</h1>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
