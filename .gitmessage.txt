@@ -1,0 +1,10 @@
+# 타입: feat | fix | chore | style | refactor
+# 영역: intro | home | office | ai | theme | setup
+
+feat: [intro] 간단한 제목 작성
+
+# 변경 내용:
+# - 무엇을 했는지
+
+# 이유:
+# - 왜 했는지 (선택)
