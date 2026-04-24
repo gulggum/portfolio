@@ -1,6 +1,8 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { botMap } from "../../data/botMap";
 import type { BotType } from "../../types/robot";
+import { fadeUp } from "../../styles/animation";
 
 const ChatBubble = ({
   type,
@@ -9,59 +11,94 @@ const ChatBubble = ({
   type: BotType;
   onClose: () => void;
 }) => {
-  //현재 캐릭터
   const bot = botMap[type];
-
-  //step : 현재 대화 단계(0 = 첫 인사)
   const [step, setStep] = useState(0);
 
   return (
-    <div
+    <BubbleContainer
       onClick={onClose}
-      className="
-        absolute
-        z-50
-
-        -translate-x-1/2
-        -translate-y-[200%]
-
-        bg-white
-        px-4 py-3
-        rounded-2xl
-        shadow-lg
-
-        w-[220px]
-        text-sm
-
-        animate-fadeUp
-      "
       style={{
         top: bot.position.top,
         left: bot.position.left,
       }}
     >
-      {/* 꼬리 */}
-      <div
-        className="
-        absolute bottom-[-6px] left-1/2
-        -translate-x-1/2
-        w-3 h-3 bg-white rotate-45
-      "
-      />
+      <Tail />
 
-      {/* 이름 */}
-      <div className="font-semibold mb-1">{bot.name}</div>
+      <Name>{bot.name}</Name>
 
-      {/* GPT 느낌 점 */}
-      <div className="flex gap-1 mb-2">
-        <span className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-        <span className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
-        <span className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200" />
-      </div>
+      <Dots>
+        <Dot />
+        <Dot delay="0.1s" />
+        <Dot delay="0.2s" />
+      </Dots>
 
-      {bot.getContent()}
-    </div>
+      <Content>{bot.getContent()}</Content>
+    </BubbleContainer>
   );
 };
 
 export default ChatBubble;
+
+const BubbleContainer = styled.div`
+  position: absolute;
+  z-index: 50;
+
+  transform: translate(-50%, -200%);
+
+  background: ${({ theme }) => theme.colors.surface};
+  padding: 12px 16px;
+  border-radius: 16px;
+  box-shadow: ${({ theme }) => theme.shadow.soft};
+
+  width: 220px;
+  font-size: 14px;
+
+  animation: ${fadeUp} 0.3s ease-out;
+`;
+
+const Tail = styled.div`
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  width: 12px;
+  height: 12px;
+  background: ${({ theme }) => theme.colors.surface};
+`;
+
+const Name = styled.div`
+  font-weight: 600;
+  margin-bottom: 6px;
+`;
+
+const Dots = styled.div`
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+`;
+
+const Dot = styled.span<{ delay?: string }>`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary};
+
+  animation: bounce 1s infinite;
+  animation-delay: ${({ delay }) => delay || "0s"};
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+`;
+
+const Content = styled.div`
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.4;
+`;

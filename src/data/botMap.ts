@@ -5,14 +5,13 @@ import type { BotConfig, BotType } from "../types/robot";
 
 export const botMap: Record<
   BotType,
-  BotConfig & { position: { top: string; left: string }; color: string }
+  BotConfig & { position: { top: string; left: string } }
 > = {
   ceo: {
     name: "대표봇",
     image: ceo,
     getContent: () => "전체 기획과 방향을 담당하고 있어요.",
     position: { top: "50%", left: "35%" },
-    color: "primary",
     dialogues: [
       {
         text: "안녕하세요! 👋\n대표봇이에요.\n이 포트폴리오의 전체 구조를 소개해드릴게요!",

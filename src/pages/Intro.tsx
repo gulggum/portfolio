@@ -1,108 +1,89 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import introCompany from "../assets/images/company/intro_company.png";
 import { FiCpu, FiHeart, FiTrendingUp } from "react-icons/fi";
-import { type ReactNode } from "react";
-
-// 🔹 카드 props 타입 정의
-type CardProps = {
-  icon: ReactNode;
-  text: string;
-  color: string;
-};
+import Card from "../components/Card";
 
 function Intro() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-center px-4">
-      {/* 🏢 회사 이미지 */}
-      <img
+    <Container>
+      <CompanyImage
         src={introCompany}
         alt="company"
-        className="
-  w-[85vw] 
-  max-w-[700px] 
-  mb-6
-  cursor-pointer
-  animate-float
-  transition
-  hover:scale-105
-"
         onClick={() => navigate("/home")}
       />
 
-      {/* 텍스트 */}
-      <p className="text-lg font-medium text-primary mb-2">안녕하세요!</p>
-      <h1 className="text-xl sm:text-3xl font-extrabold text-text text-center mb-8">
-        저희 회사를 소개합니다 ✨
-      </h1>
+      <SubText>안녕하세요!</SubText>
 
-      {/* 카드 영역 - 모바일 세로 / PC 가로 */}
-      <div
-        className="
-  flex 
-  flex-col 
-  gap-3 
-  w-full 
-  max-w-[400px]
+      <Title>저희 회사를 소개합니다 ✨</Title>
 
-  sm:flex-row 
-  sm:max-w-none 
-  sm:w-auto 
-  sm:gap-6
-"
-      >
-        <Card
-          icon={<FiCpu className="stroke-[2.5]" />}
-          color="text-accent"
-          text="AI 기반 서비스"
-        />
-        <Card
-          icon={<FiHeart className="stroke-[2.5]" />}
-          color="text-primary"
-          text="사용자 중심"
-        />
-        <Card
-          icon={<FiTrendingUp className="stroke-[2.5]" />}
-          color="text-secondary"
-          text="지속적인 성장"
-        />
-      </div>
-    </div>
+      <CardWrapper>
+        <Card icon={<FiCpu />} color="accent" text="AI 기반 서비스" />
+        <Card icon={<FiHeart />} color="primary" text="사용자 중심" />
+        <Card icon={<FiTrendingUp />} color="secondary" text="지속적인 성장" />
+      </CardWrapper>
+    </Container>
   );
 }
 
 export default Intro;
+const Container = styled.div`
+  min-height: 100vh;
+  background: ${({ theme }) => theme.colors.bg};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.spacing.md};
+`;
 
-// 🔹 카드 컴포넌트
-function Card({ icon, text, color }: CardProps) {
-  return (
-    <div
-      className="
-        bg-white 
-        rounded-2xl 
-        shadow-soft 
-        transition
+const CompanyImage = styled.img`
+  width: 85vw;
+  max-width: 700px;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  cursor: pointer;
 
-        flex flex-col items-center justify-center   // ✅ 모바일: 가로 버튼
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s;
 
-        w-full 
-        px-5 py-6   
-   
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
 
-        sm:flex-col sm:justify-center       // ✅ PC: 카드형
-        sm:h-auto 
-        sm:w-[120px] md:w-[180px]    
-                     md:px-6 md:py-7  
-        sm:px-6 sm:py-4
-         
-      "
-    >
-      {/* 아이콘 */}
-      <div className={`text-3xl ${color} mb-3`}>{icon}</div>
+const SubText = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
+`;
 
-      {/* 텍스트 */}
-      <p className="text-sm text-text text-center">{text}</p>
-    </div>
-  );
-}
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: 800;
+  color: ${({ theme }) => theme.colors.text};
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+
+  @media (min-width: 640px) {
+    font-size: 28px;
+  }
+`;
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  width: 100%;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: ${({ theme }) => theme.spacing.lg};
+    width: 100%;
+    max-width: 600px;
+  }
+`;

@@ -4,20 +4,9 @@ import mobileBg from "../assets/images/company/office_mobile.png";
 
 import ChatBubble from "../components/office/ChatBubble";
 import { botMap } from "../data/botMap";
-import type { BotColor, BotType } from "../types/robot";
-
-const botStyles: Record<BotColor, string> = {
-  primary: "border-4 border-primary shadow-[0_0_20px_rgba(244,167,185,0.6)]",
-
-  accent: "border-4 border-accent shadow-[0_0_20px_rgba(175,203,255,0.6)]",
-
-  secondary:
-    "border-4 border-secondary shadow-[0_0_20px_rgba(205,180,219,0.6)]",
-
-  warm: "border-4 border-orange-300 shadow-[0_0_20px_rgba(253,186,116,0.6)]",
-
-  soft: "border-4 border-pink-200 shadow-[0_0_20px_rgba(250,218,221,0.6)]",
-};
+import type { BotType } from "../types/robot";
+import Bot from "../components/Bot";
+import styled from "styled-components";
 
 const Home = () => {
   const [active, setActive] = useState<BotType | null>(null);
@@ -31,67 +20,101 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <Container>
       {/* 배경 */}
-      <img
-        src={mobileBg}
-        className="absolute inset-0 sm:hidden w-full h-full object-cover"
-      />
-      <img
-        src={pcBg}
-        className="absolute inset-0 hidden sm:block w-full h-full object-cover"
-      />
+      <BgImage src={mobileBg} className="mobile" />
+      <BgImage src={pcBg} className="pc" />
 
-      {/*  캐릭터 + hover + click */}
+      {/* 캐릭터 */}
       {Object.entries(botMap).map(([type, bot]) => (
-        <div
+        <BotWrapper
           key={type}
-          className="absolute group cursor-pointer z-10"
+          onClick={() => setActive(type as BotType)}
           style={{
             top: bot.position.top,
             left: bot.position.left,
-            transform: "translate(-50%, -50%)",
           }}
-          onClick={() => setActive(type as BotType)}
         >
-          {/* 캐릭터 */}
-          <img
+          <Bot
             src={bot.image}
             alt={bot.name}
-            className={`
-        w-[18vw] max-w-[200px]
-  ${botStyles[bot.color]}
-        animate-float
-        transition-transform duration-300
-        group-hover:scale-110
-          ${active === type ? "scale-110" : ""}
-        
-      `}
+            active={active === type}
+            isCeo={type === "ceo"}
+            color={bot.color}
           />
 
-          {/* hover 이름 */}
-          <div
-            className="
-        absolute bottom-full left-1/2
-        -translate-x-1/2 mb-2
-
-        px-2 py-1 text-xs
-        bg-black text-white rounded
-
-        opacity-0 group-hover:opacity-100
-        transition
-        whitespace-nowrap
-      "
-          >
-            {bot.name}
-          </div>
-        </div>
+          <NameTag className="name">{bot.name}</NameTag>
+        </BotWrapper>
       ))}
 
-      {/*  말풍선 */}
+      {/* 말풍선 */}
       {active && <ChatBubble type={active} onClose={() => setActive(null)} />}
-    </div>
+    </Container>
   );
 };
 
 export default Home;
+
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+`;
+
+const BgImage = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &.mobile {
+    display: block;
+  }
+
+  &.pc {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    &.mobile {
+      display: none;
+    }
+    &.pc {
+      display: block;
+    }
+  }
+`;
+
+const BotWrapper = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover .name {
+    opacity: 1;
+    transform: translate(-50%, -5px);
+  }
+`;
+
+const NameTag = styled.div`
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+
+  background: black;
+  color: white;
+  border-radius: 6px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  transition: all 0.2s ease;
+`;
