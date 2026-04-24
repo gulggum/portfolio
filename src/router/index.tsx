@@ -4,7 +4,7 @@ import NotFound from "../pages/NotFound";
 import Intro from "../pages/Intro";
 
 // 앱 전체 라우팅 정의
-function Router() {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,6 +14,6 @@ function Router() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default Router;
