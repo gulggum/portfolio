@@ -4,7 +4,20 @@ import mobileBg from "../assets/images/company/office_mobile.png";
 
 import ChatBubble from "../components/office/ChatBubble";
 import { botMap } from "../data/botMap";
-import type { BotType } from "../types/robot";
+import type { BotColor, BotType } from "../types/robot";
+
+const botStyles: Record<BotColor, string> = {
+  primary: "border-4 border-primary shadow-[0_0_20px_rgba(244,167,185,0.6)]",
+
+  accent: "border-4 border-accent shadow-[0_0_20px_rgba(175,203,255,0.6)]",
+
+  secondary:
+    "border-4 border-secondary shadow-[0_0_20px_rgba(205,180,219,0.6)]",
+
+  warm: "border-4 border-orange-300 shadow-[0_0_20px_rgba(253,186,116,0.6)]",
+
+  soft: "border-4 border-pink-200 shadow-[0_0_20px_rgba(250,218,221,0.6)]",
+};
 
 const Home = () => {
   const [active, setActive] = useState<BotType | null>(null);
@@ -47,7 +60,7 @@ const Home = () => {
             alt={bot.name}
             className={`
         w-[18vw] max-w-[200px]
-
+  ${botStyles[bot.color]}
         animate-float
         transition-transform duration-300
         group-hover:scale-110

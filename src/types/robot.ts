@@ -1,8 +1,10 @@
 export type BotType = "ceo" | "dev" | "design" | "project" | "data";
+export type BotColor = "accent" | "primary" | "secondary" | "warm" | "soft";
 
 export interface BotConfig {
   name: string;
   image: string;
+  color: BotColor;
   getContent: () => string;
   dialogues: Dialogue[];
 }

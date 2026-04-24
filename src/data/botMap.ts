@@ -1,20 +1,18 @@
 import ceo from "../assets/images/characters/ceo.png";
-import devBot from "../assets/images/characters/dev.png";
-import designBot from "../assets/images/characters/design.png";
-import projectBot from "../assets/images/characters/project.png";
-import dataBot from "../assets/images/characters/data.png";
+import bot from "../assets/images/characters/bot.png";
+
 import type { BotConfig, BotType } from "../types/robot";
 
 export const botMap: Record<
   BotType,
-  BotConfig & { position: { top: string; left: string } }
+  BotConfig & { position: { top: string; left: string }; color: string }
 > = {
   ceo: {
     name: "대표봇",
     image: ceo,
     getContent: () => "전체 기획과 방향을 담당하고 있어요.",
     position: { top: "50%", left: "35%" },
-
+    color: "primary",
     dialogues: [
       {
         text: "안녕하세요! 👋\n대표봇이에요.\n이 포트폴리오의 전체 구조를 소개해드릴게요!",
@@ -29,7 +27,8 @@ export const botMap: Record<
 
   dev: {
     name: "개발봇",
-    image: devBot,
+    image: bot,
+    color: "accent",
     getContent: () => "React, TypeScript 기반 개발",
     position: { top: "70%", left: "60%" },
 
@@ -54,7 +53,8 @@ export const botMap: Record<
 
   design: {
     name: "디자인봇",
-    image: designBot,
+    image: bot,
+    color: "secondary",
     getContent: () => "감성 UI/UX 디자인 담당",
     position: { top: "58%", left: "75%" },
 
@@ -72,7 +72,8 @@ export const botMap: Record<
 
   project: {
     name: "프로젝트봇",
-    image: projectBot,
+    image: bot,
+    color: "warm",
     getContent: () => "프로젝트 설명",
     position: { top: "65%", left: "25%" },
 
@@ -90,7 +91,8 @@ export const botMap: Record<
 
   data: {
     name: "데이터봇",
-    image: dataBot,
+    image: bot,
+    color: "soft",
     getContent: () => "강점 및 역량",
     position: { top: "80%", left: "20%" },
 
