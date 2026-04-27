@@ -17,16 +17,12 @@ const Home = () => {
   }, []);
 
   //bot 사이즈
-  const getSize = (type: BotType) => {
-    const base = isMobile ? 110 : 120;
-    if (isMobile) return base;
-    return base;
-  };
+  const botSize = isMobile ? 110 : 100;
 
   return isMobile ? (
     <MobileLayout setActive={setActive} />
   ) : (
-    <DesktopLayout active={active} setActive={setActive} getSize={getSize} />
+    <DesktopLayout active={active} setActive={setActive} botSize={botSize} />
   );
 };
 

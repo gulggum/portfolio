@@ -11,11 +11,11 @@ import MyCharacter from "../office/MyCharacter";
 const DesktopLayout = ({
   active,
   setActive,
-  getSize,
+  botSize,
 }: {
   active: BotType | null;
   setActive: (type: BotType | null) => void;
-  getSize: (type: BotType) => number;
+  botSize: number;
 }) => {
   return (
     //좌우 스크롤 감싸는 래퍼
@@ -41,11 +41,14 @@ const DesktopLayout = ({
                 active={active === type}
                 isCeo={type === "ceo"}
                 color={bot.color}
-                size={getSize(type as BotType)}
+                size={botSize}
               />
 
               {/* 호버 시 나타나는 이름 툴팁 */}
-              <NameTag className="name">{bot.name}</NameTag>
+              <Label>
+                <LabelName>{bot.name}</LabelName>
+                <LabelDesc>{bot.preview}</LabelDesc>
+              </Label>
 
               {/* 클릭된 봇만 말풍선 열림 */}
               {active === type && (
@@ -125,20 +128,29 @@ const BotWrapper = styled.div<{
     transform: translate(-50%, -8px);
   }
 `;
-
-const NameTag = styled.div`
+const Label = styled.div`
   position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 500;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border-radius: 999px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: all 0.2s ease;
+  top: 20%;
+  left: 105%;
   pointer-events: none;
+`;
+
+const LabelName = styled.div`
+  display: inline-block;
+  background: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radius.sm};
+  padding: 4px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.black};
+  margin-bottom: 4px;
+  white-space: nowrap;
+`;
+
+const LabelDesc = styled.div`
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.white}; /* 배경 위에서 잘 보이게 */
+  line-height: 1.4;
+  white-space: nowrap;
+  padding-left: 2px;
 `;
