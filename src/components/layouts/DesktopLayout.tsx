@@ -6,6 +6,7 @@ import Bot from "../Bot";
 import { botMap } from "../../data/botMap";
 import ChatBubble from "../office/ChatBubble";
 import pcBg from "../../assets/images/company/office_PC.png";
+import MyCharacter from "../office/MyCharacter";
 
 const DesktopLayout = ({
   active,
@@ -22,7 +23,7 @@ const DesktopLayout = ({
       <Stage>
         {/* 배경 이미지 — 원본 사이즈 고정으로 좌우 스크롤 가능 */}
         <BgImage src={pcBg} />
-
+        <MyCharacter />
         {Object.entries(botMap).map(([type, bot], index) => {
           const pos = bot.position.pc;
 
@@ -68,7 +69,7 @@ const ScrollWrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 
   /* 티파니 스크롤바 */
   &::-webkit-scrollbar {
@@ -86,8 +87,8 @@ const ScrollWrapper = styled.div`
 /* 배경 원본 사이즈로 고정 — 이 안에서 봇들 absolute 배치 */
 const Stage = styled.div`
   position: relative;
-  width: 1536px; /* 배경 이미지 원본 너비 */
-  height: 1024px; /* 배경 이미지 원본 높이 */
+  width: max(1536px, 100vw); /* 배경 이미지 원본 너비 */
+  aspect-ratio: 1536 / 1024; /* 원본 비율 유지 — 절대 안 잘림 */
 `;
 
 const BgImage = styled.img`
@@ -95,7 +96,7 @@ const BgImage = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   z-index: 0;
 `;
 

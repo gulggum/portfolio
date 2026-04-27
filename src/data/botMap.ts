@@ -16,7 +16,7 @@ export const botMap: Record<
     color: "primary", // ✅ 새 테마 키
     getContent: () => "안녕하세요! 저는 이희연을 소개하는 봇이에요.",
     position: {
-      pc: { top: "55%", left: "20%" },
+      pc: { top: "45%", left: "25%" },
       mobile: { top: "5%", left: "50%" },
     },
     preview: "이희연을 소개합니다",
@@ -38,7 +38,7 @@ export const botMap: Record<
     color: "primarySoft", // ✅ 새 테마 키
     getContent: () => "프로젝트를 소개해드릴게요!",
     position: {
-      pc: { top: "60%", left: "40%" },
+      pc: { top: "70%", left: "12%" },
       mobile: { top: "28%", left: "50%" },
     },
     preview: "실제 프로젝트 경험 소개",
@@ -60,7 +60,7 @@ export const botMap: Record<
     color: "primary", // ✅ 새 테마 키
     getContent: () => "기술 스택을 소개해드릴게요!",
     position: {
-      pc: { top: "45%", left: "60%" },
+      pc: { top: "48%", left: "60%" },
       mobile: { top: "49%", left: "50%" },
     },
     preview: "React, TypeScript 기반 개발",
@@ -89,7 +89,7 @@ export const botMap: Record<
     color: "muted", // ✅ 새 테마 키
     getContent: () => "연락처를 안내해드릴게요!",
     position: {
-      pc: { top: "70%", left: "75%" },
+      pc: { top: "53%", left: "78%" },
       mobile: { top: "70%", left: "50%" },
     },
     preview: "이메일, 깃허브, 이력서",

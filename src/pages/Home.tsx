@@ -16,8 +16,9 @@ const Home = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  //bot 사이즈
   const getSize = (type: BotType) => {
-    const base = isMobile ? 110 : 200;
+    const base = isMobile ? 110 : 120;
     if (isMobile) return base;
     return base;
   };
