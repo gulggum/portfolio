@@ -1,70 +1,33 @@
-import ceo from "../assets/images/characters/ceo.png";
 import bot from "../assets/images/characters/bot.png";
-
 import type { BotConfig, BotType } from "../types/robot";
 
 export const botMap: Record<
   BotType,
-  BotConfig & { position: { top: string; left: string } }
+  BotConfig & {
+    position: {
+      pc: { top: string; left: string };
+      mobile: { top: string; left: string };
+    };
+  }
 > = {
-  ceo: {
-    name: "대표봇",
-    image: ceo,
-    getContent: () => "전체 기획과 방향을 담당하고 있어요.",
-    position: { top: "50%", left: "35%" },
+  intro: {
+    name: "소개봇",
+    image: bot,
+    color: "primary", // ✅ 새 테마 키
+    getContent: () => "안녕하세요! 저는 이희연을 소개하는 봇이에요.",
+    position: {
+      pc: { top: "55%", left: "20%" },
+      mobile: { top: "5%", left: "50%" },
+    },
+    preview: "이희연을 소개합니다",
     dialogues: [
       {
-        text: "안녕하세요! 👋\n대표봇이에요.\n이 포트폴리오의 전체 구조를 소개해드릴게요!",
-        options: [{ label: "구조 설명 보기", next: 1 }],
+        text: "안녕하세요! 👋\n저는 소개봇이에요.\n이희연님에 대해 알고 싶은 게 있으신가요?",
+        options: [{ label: "자기소개 보기", next: 1 }],
       },
       {
-        text: "이 공간은 '이희연님의 회사' 컨셉으로 구성되어 있어요!\n각 캐릭터를 클릭하면 역할별 정보를 확인할 수 있어요 😊",
+        text: "사용자 경험을 중요하게 생각하는\n프론트엔드 개발자 이희연입니다 😊",
         options: [{ label: "처음으로", next: 0 }],
-      },
-    ],
-  },
-
-  dev: {
-    name: "개발봇",
-    image: bot,
-    color: "accent",
-    getContent: () => "React, TypeScript 기반 개발",
-    position: { top: "70%", left: "60%" },
-
-    dialogues: [
-      {
-        text: "안녕하세요! 👩‍💻\n프론트엔드 개발을 담당하는 개발봇이에요.\n무엇이 궁금하신가요?",
-        options: [
-          { label: "기술 스택", next: 1 },
-          { label: "프로젝트", next: 2 },
-        ],
-      },
-      {
-        text: "React, TypeScript를 중심으로\n사용자 친화적인 UI를 구현하고 있어요!",
-        options: [{ label: "뒤로가기", next: 0 }],
-      },
-      {
-        text: "키즈스톡 프로젝트를 통해\n어린이 경제 학습 서비스를 개발했어요!",
-        options: [{ label: "뒤로가기", next: 0 }],
-      },
-    ],
-  },
-
-  design: {
-    name: "디자인봇",
-    image: bot,
-    color: "secondary",
-    getContent: () => "감성 UI/UX 디자인 담당",
-    position: { top: "58%", left: "75%" },
-
-    dialogues: [
-      {
-        text: "안녕하세요! 🎨\n디자인을 담당하는 디자인봇이에요.\n어떤 부분을 보시겠어요?",
-        options: [{ label: "디자인 스타일", next: 1 }],
-      },
-      {
-        text: "파스텔톤과 귀여운 감성을 기반으로\n사용자 경험을 중요하게 생각하고 있어요!",
-        options: [{ label: "뒤로가기", next: 0 }],
       },
     ],
   },
@@ -72,36 +35,100 @@ export const botMap: Record<
   project: {
     name: "프로젝트봇",
     image: bot,
-    color: "warm",
-    getContent: () => "프로젝트 설명",
-    position: { top: "65%", left: "25%" },
-
+    color: "primarySoft", // ✅ 새 테마 키
+    getContent: () => "프로젝트를 소개해드릴게요!",
+    position: {
+      pc: { top: "60%", left: "40%" },
+      mobile: { top: "28%", left: "50%" },
+    },
+    preview: "실제 프로젝트 경험 소개",
     dialogues: [
       {
-        text: "안녕하세요! 🚀\n프로젝트봇이에요.\n프로젝트를 확인해보실래요?",
+        text: "안녕하세요! 🚀\n프로젝트봇이에요.\n어떤 프로젝트가 궁금하세요?",
         options: [{ label: "키즈스톡 보기", next: 1 }],
       },
       {
-        text: "키즈스톡은 어린이를 위한 경제 학습 서비스로,\n쉽고 재미있게 주식을 배울 수 있도록 만들었어요!",
+        text: "키즈스톡은 어린이를 위한 경제 학습 서비스예요!\n쉽고 재미있게 주식을 배울 수 있어요 📈",
         options: [{ label: "뒤로가기", next: 0 }],
       },
     ],
   },
 
-  data: {
-    name: "데이터봇",
+  dev: {
+    name: "기술스택봇",
     image: bot,
-    color: "soft",
-    getContent: () => "강점 및 역량",
-    position: { top: "80%", left: "20%" },
-
+    color: "primary", // ✅ 새 테마 키
+    getContent: () => "기술 스택을 소개해드릴게요!",
+    position: {
+      pc: { top: "45%", left: "60%" },
+      mobile: { top: "49%", left: "50%" },
+    },
+    preview: "React, TypeScript 기반 개발",
     dialogues: [
       {
-        text: "안녕하세요! 📊\n강점을 소개하는 데이터봇이에요.\n확인해보실래요?",
-        options: [{ label: "강점 보기", next: 1 }],
+        text: "안녕하세요! 👩‍💻\n기술스택봇이에요.\n어떤 기술이 궁금하세요?",
+        options: [
+          { label: "프론트엔드", next: 1 },
+          { label: "기타 도구", next: 2 },
+        ],
       },
       {
-        text: "UI 감각, 기획력, 인터랙션 구현 능력을 강점으로 가지고 있어요!",
+        text: "React, TypeScript, Vue, Vite를\n능숙하게 사용할 수 있어요!",
+        options: [{ label: "뒤로가기", next: 0 }],
+      },
+      {
+        text: "Git, Figma, styled-components 등\n다양한 도구를 활용하고 있어요!",
+        options: [{ label: "뒤로가기", next: 0 }],
+      },
+    ],
+  },
+
+  contact: {
+    name: "연락봇",
+    image: bot,
+    color: "muted", // ✅ 새 테마 키
+    getContent: () => "연락처를 안내해드릴게요!",
+    position: {
+      pc: { top: "70%", left: "75%" },
+      mobile: { top: "70%", left: "50%" },
+    },
+    preview: "이메일, 깃허브, 이력서",
+    dialogues: [
+      {
+        text: "안녕하세요! 📬\n연락봇이에요.\n어떻게 연락하고 싶으세요?",
+        options: [
+          { label: "이메일", next: 1 },
+          { label: "깃허브", next: 2 },
+        ],
+      },
+      {
+        text: "이메일로 연락 주세요!\nyour@email.com",
+        options: [{ label: "뒤로가기", next: 0 }],
+      },
+      {
+        text: "깃허브에서 코드를 확인하세요!\ngithub.com/yourname",
+        options: [{ label: "뒤로가기", next: 0 }],
+      },
+    ],
+  },
+
+  growth: {
+    name: "성장봇",
+    image: bot,
+    color: "primary", // ✅ 새 테마 키
+    getContent: () => "개발 여정을 소개해드릴게요!",
+    position: {
+      pc: { top: "75%", left: "88%" },
+      mobile: { top: "87%", left: "50%" },
+    },
+    preview: "개발 여정 & 현재 공부 중인 것",
+    dialogues: [
+      {
+        text: "안녕하세요! 🌱\n성장봇이에요.\n개발 여정이 궁금하세요?",
+        options: [{ label: "여정 보기", next: 1 }],
+      },
+      {
+        text: "꾸준히 성장 중인 프론트엔드 개발자예요!\n현재는 TypeScript와 React 심화를 공부 중이에요 💪",
         options: [{ label: "뒤로가기", next: 0 }],
       },
     ],

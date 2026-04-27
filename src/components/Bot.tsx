@@ -8,16 +8,18 @@ interface BotProps {
   active: boolean;
   isCeo: boolean;
   color?: ColorKey;
+  size: number;
 }
 
-const Bot = ({ src, alt, active, isCeo, color }: BotProps) => {
+const Bot = ({ src, alt, active, isCeo, color, size }: BotProps) => {
   return (
     <StyledBot
       src={src}
       alt={alt}
       $active={active}
       $isCeo={isCeo}
-      $color={color} // ✅ 추가
+      $color={color}
+      $size={size}
     />
   );
 };
@@ -28,9 +30,10 @@ const StyledBot = styled.img<{
   $active: boolean;
   $isCeo: boolean;
   $color?: ColorKey;
+  $size: number;
 }>`
-  width: 18vw;
-  max-width: 200px;
+  width: ${({ $size }) => $size}px;
+  height: auto;
   transition: transform 0.3s;
 
   ${({ $isCeo }) =>
