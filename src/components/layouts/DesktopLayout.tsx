@@ -1,3 +1,4 @@
+//배경+봇(Home내부 콘텐츠)
 import styled, { css } from "styled-components";
 import type { BotType } from "../../types/robot";
 import { fadeUp } from "../../styles/animation";

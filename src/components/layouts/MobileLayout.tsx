@@ -1,3 +1,4 @@
+//모바일용 카드 리스트 (Home 내부 콘텐츠)
 import styled from "styled-components";
 import type { BotType } from "../../types/robot";
 import { botMap } from "../../data/botMap";

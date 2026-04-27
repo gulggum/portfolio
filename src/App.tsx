@@ -10,7 +10,7 @@ const App = () => {
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Router />;
+      <Router />
     </ThemeProvider>
   );
 };
