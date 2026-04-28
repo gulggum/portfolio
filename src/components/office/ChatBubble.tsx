@@ -2,6 +2,7 @@ import styled from "styled-components";
 import type { BotType } from "../../types/robot";
 import { botMap } from "../../data/botMap";
 import { fadeUp } from "../../styles/animation";
+import { useModal } from "../../context/ModalContext";
 
 const ChatBubble = ({
   type,
@@ -13,6 +14,7 @@ const ChatBubble = ({
   onOpen: (initialMessage?: string) => void; // ← 초기 메시지 전달 가능하게
 }) => {
   const bot = botMap[type];
+  const { openModal } = useModal();
 
   return (
     // 말풍선 바깥 클릭 시 닫힘
@@ -40,14 +42,29 @@ const ChatBubble = ({
             key={s}
             onClick={(e) => {
               e.stopPropagation();
-              onOpen(s); // 클릭한 질문을 초기 메시지로 전달
+              // "프로젝트 직접 보고 싶어요!" 클릭하면 모달 열기
+              if (s === "프로젝트 직접 보고 싶어요!") {
+                openModal("projects");
+              } else {
+                onOpen(s); // 나머지는 채팅으로
+              }
             }}
           >
             {s}
           </SuggestionBtn>
         ))}
       </SuggestionList>
-
+      {/* 프로젝트봇일 때만 보이기 */}
+      {type === "project" && (
+        <ProjectBtn
+          onClick={(e) => {
+            e.stopPropagation();
+            openModal("projects");
+          }}
+        >
+          🗂 프로젝트 보러가기
+        </ProjectBtn>
+      )}
       {/* 직접 입력 버튼 */}
       <OpenBtn
         onClick={(e) => {
@@ -173,5 +190,24 @@ const SuggestionBtn = styled.button`
     border-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
     background: ${({ theme }) => theme.colors.primarySoft};
+  }
+`;
+
+const ProjectBtn = styled.button`
+  width: 100%;
+  margin-top: 6px;
+  padding: 7px;
+  border-radius: ${({ theme }) => theme.radius.sm};
+  border: 1px solid ${({ theme }) => theme.colors.surfaceLight};
+  background: ${({ theme }) => theme.colors.surfaceLight};
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;

@@ -48,7 +48,7 @@ const ContactModal = ({ onClose }: { onClose: () => void }) => {
             <FiGithub />
             <LinkText>
               <LinkLabel>GitHub</LinkLabel>
-              <LinkSub>github.com/your-github</LinkSub>
+              <LinkSub>github.com/gulggum</LinkSub>
             </LinkText>
           </LinkCard>
 
@@ -56,7 +56,7 @@ const ContactModal = ({ onClose }: { onClose: () => void }) => {
             <FiMail />
             <LinkText>
               <LinkLabel>Email</LinkLabel>
-              <LinkSub>your@email.com</LinkSub>
+              <LinkSub>devhy5174@gmail.com</LinkSub>
             </LinkText>
           </LinkCard>
 
