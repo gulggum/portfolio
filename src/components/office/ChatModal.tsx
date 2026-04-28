@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import type { BotType } from "../../types/robot";
 import type { Message } from "../../types/chat";
 import { botMap } from "../../data/botMap";
+import { getSystemPrompt } from "../../data/systemPrompts";
 
 interface Props {
   type: BotType;
@@ -50,21 +51,45 @@ const ChatModal = ({ type, onClose, initialMessage }: Props) => {
     const content = text || input;
     if (!content.trim() || loading) return;
 
-    setMessages((prev) => [...prev, { role: "user", content }]);
+    const userMessage: Message = { role: "user", content };
+    const updatedMessages = [...messages, userMessage];
 
-    // 내 메시지 먼저 추가
-
+    setMessages(updatedMessages);
     setInput("");
     setLoading(true);
 
-    // 🔜 여기에 나중에 API 연결 — 지금은 임시 응답
-    setTimeout(() => {
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": import.meta.env.VITE_ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true", // 브라우저 직접 호출 허용
+        },
+        body: JSON.stringify({
+          model: "claude-haiku-4-5-20251001", // 가장 저렴한 모델
+          max_tokens: 500,
+          system: getSystemPrompt(type), // 봇별 시스템 프롬프트
+          messages: updatedMessages,
+        }),
+      });
+
+      const data = await res.json();
+      const reply = data.content[0].text;
+
+      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+    } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "API 연결 전 임시 응답이에요!" },
+        {
+          role: "assistant",
+          content: "오류가 발생했어요. 다시 시도해주세요 😢",
+        },
       ]);
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   // 엔터키로 전송
