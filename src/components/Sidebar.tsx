@@ -5,20 +5,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 import { useThemeToggle } from "../context/ThemeContext";
 import { FiHome, FiUser, FiFolder, FiCode, FiMail } from "react-icons/fi";
-
-const navItems = [
-  { icon: <FiHome />, label: "홈", path: "/home" },
-  { icon: <FiUser />, label: "소개", path: "/about" },
-  { icon: <FiFolder />, label: "프로젝트", path: "/projects" },
-  { icon: <FiCode />, label: "기술스택", path: "/skills" },
-  { icon: <FiMail />, label: "연락하기", path: "/contact" },
-];
+import { useModal } from "../context/ModalContext";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // 펼침 상태
   const { isDark, onToggle } = useThemeToggle();
   const navigate = useNavigate();
   const location = useLocation();
+  const { openModal } = useModal();
+
+  const navItems = [
+    { icon: <FiHome />, label: "홈", path: "/home" },
+    { icon: <FiUser />, label: "소개", action: () => openModal("about") },
+    {
+      icon: <FiFolder />,
+      label: "프로젝트",
+      action: () => openModal("projects"),
+    },
+    { icon: <FiCode />, label: "기술스택", action: () => openModal("skills") },
+    { icon: <FiMail />, label: "연락하기", action: () => openModal("contact") },
+  ];
 
   return (
     <Nav
@@ -36,12 +42,15 @@ const Sidebar = () => {
       <NavList>
         {navItems.map((item) => (
           <NavItem
-            key={item.path}
-            $active={location.pathname === item.path}
-            onClick={() => navigate(item.path)}
+            key={item.label} // ← path 대신 label로 (항상 존재)
+            $active={!!item.path && location.pathname === item.path} // ← path 있을 때만 활성화
+            onClick={() => {
+              if (item.action)
+                item.action(); // 모달 열기
+              else if (item.path) navigate(item.path); // 페이지 이동
+            }}
           >
             <IconBox>{item.icon}</IconBox>
-            {/* 펼쳐질 때만 텍스트 표시 */}
             <Label $isOpen={isOpen}>{item.label}</Label>
           </NavItem>
         ))}
