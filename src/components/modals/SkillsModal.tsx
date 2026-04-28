@@ -12,7 +12,6 @@ import {
   SiSupabase,
   SiVercel,
   SiGit,
-  SiReactquery,
   SiRedux,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
