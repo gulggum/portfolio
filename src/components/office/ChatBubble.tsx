@@ -6,9 +6,11 @@ import { fadeUp } from "../../styles/animation";
 const ChatBubble = ({
   type,
   onClose,
+  onOpen,
 }: {
   type: BotType;
   onClose: () => void;
+  onOpen: () => void;
 }) => {
   const bot = botMap[type];
 
@@ -30,6 +32,16 @@ const ChatBubble = ({
 
       {/* 봇 한줄 소개 */}
       <Content>{bot.preview}</Content>
+
+      <OpenBtn
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpen();
+        }}
+      >
+        {" "}
+        대화하기 →
+      </OpenBtn>
     </BubbleContainer>
   );
 };
@@ -102,4 +114,23 @@ const Dot = styled.span<{ delay?: string }>`
 const Content = styled.div`
   color: ${({ theme }) => theme.colors.muted}; /* 본문은 muted */
   line-height: 1.4;
+`;
+
+const OpenBtn = styled.button`
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: ${({ theme }) => theme.radius.sm};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
+    color: white;
+  }
 `;

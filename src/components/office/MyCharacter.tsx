@@ -35,12 +35,6 @@ const MyCharacter = () => {
 
 export default MyCharacter;
 
-/* float 애니메이션 */
-const float = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-`;
-
 /* 말풍선 페이드인 */
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(8px) translateX(-50%); }
@@ -59,9 +53,8 @@ const Wrapper = styled.div`
 `;
 
 const CharacterImg = styled.img`
-  width: 220px; /* 봇보다 크게 — 나는 대표니까 */
+  width: 220px;
   cursor: pointer;
-  animation: ${float} 3s ease-in-out infinite;
   transition: transform 0.2s ease;
 
   &:hover {
