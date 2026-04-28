@@ -18,6 +18,7 @@ const Home = () => {
   //챗 모달
   const [chatBot, setChatBot] = useState<BotType | null>(null);
   //각페이지별 팝업창
+  const [initialMessage, setInitialMessage] = useState("");
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -29,6 +30,11 @@ const Home = () => {
   //bot 사이즈
   const botSize = isMobile ? 110 : 100;
 
+  const handleOpenChat = (type: BotType, message?: string) => {
+    setChatBot(type);
+    setInitialMessage(message || "");
+  };
+
   return (
     <>
       {isMobile ? (
@@ -38,11 +44,20 @@ const Home = () => {
           active={active}
           setActive={setActive}
           botSize={botSize}
-          onOpenChat={(type) => setChatBot(type)} // ← 추가
+          onOpenChat={handleOpenChat} // ← 추가
         />
       )}
       {/* 채팅 모달 — botType 있을 때만 렌더링 */}
-      {chatBot && <ChatModal type={chatBot} onClose={() => setChatBot(null)} />}
+      {chatBot && (
+        <ChatModal
+          type={chatBot}
+          initialMessage={initialMessage}
+          onClose={() => {
+            setChatBot(null);
+            setInitialMessage("");
+          }}
+        />
+      )}
       {/* 각 페이지별 모달 랜더링 */}
       {modalType === "about" && <AboutModal onClose={closeModal} />}
       {modalType === "skills" && <SkillsModal onClose={closeModal} />}

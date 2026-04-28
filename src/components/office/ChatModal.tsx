@@ -1,4 +1,3 @@
-// components/office/ChatModal.tsx
 import { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import type { BotType } from "../../types/robot";
@@ -8,10 +7,12 @@ import { botMap } from "../../data/botMap";
 interface Props {
   type: BotType;
   onClose: () => void;
+  initialMessage?: string;
 }
 
-const ChatModal = ({ type, onClose }: Props) => {
+const ChatModal = ({ type, onClose, initialMessage }: Props) => {
   const bot = botMap[type];
+  const hasSent = useRef(false); // 중복 실행 방지용
 
   // 대화 메시지 목록
   const [messages, setMessages] = useState<Message[]>([
@@ -36,14 +37,23 @@ const ChatModal = ({ type, onClose }: Props) => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // 메시지 전송 (나중에 여기서 API 호출)
-  const handleSend = async () => {
-    if (!input.trim() || loading) return; // 빈 메시지 방지
+  // initialMessage 있으면 자동 전송
+  useEffect(() => {
+    if (initialMessage && !hasSent.current) {
+      hasSent.current = true; // 한 번 실행 후 막기
+      handleSend(initialMessage);
+    }
+  }, []);
 
-    const userMessage: Message = { role: "user", content: input };
+  // 메시지 전송 (나중에 여기서 API 호출)
+  const handleSend = async (text?: string) => {
+    const content = text || input;
+    if (!content.trim() || loading) return;
+
+    setMessages((prev) => [...prev, { role: "user", content }]);
 
     // 내 메시지 먼저 추가
-    setMessages((prev) => [...prev, userMessage]);
+
     setInput("");
     setLoading(true);
 
@@ -107,6 +117,19 @@ const ChatModal = ({ type, onClose }: Props) => {
           <div ref={bottomRef} />
         </MessageList>
 
+        {/* 예시 질문 버튼 — 입력창 위에 */}
+        <SuggestionArea>
+          {bot.suggestions.map((s) => (
+            <SuggestionChip
+              key={s}
+              onClick={() => handleSend(s)}
+              disabled={loading}
+            >
+              {s}
+            </SuggestionChip>
+          ))}
+        </SuggestionArea>
+
         {/* 입력창 */}
         <InputArea>
           <Input
@@ -116,7 +139,10 @@ const ChatModal = ({ type, onClose }: Props) => {
             placeholder="메시지를 입력하세요..."
             disabled={loading}
           />
-          <SendBtn onClick={handleSend} disabled={loading || !input.trim()}>
+          <SendBtn
+            onClick={() => handleSend()}
+            disabled={loading || !input.trim()}
+          >
             전송
           </SendBtn>
         </InputArea>
@@ -313,5 +339,35 @@ const Dot = styled.span<{ delay?: string }>`
     50% {
       transform: translateY(-4px);
     }
+  }
+`;
+
+const SuggestionArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 20px 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.surfaceLight};
+`;
+
+const SuggestionChip = styled.button`
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.colors.surfaceLight};
+  background: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme }) => theme.colors.muted};
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 `;

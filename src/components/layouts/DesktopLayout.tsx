@@ -17,7 +17,7 @@ const DesktopLayout = ({
   active: BotType | null;
   setActive: (type: BotType | null) => void;
   botSize: number;
-  onOpenChat: (type: BotType) => void;
+  onOpenChat: (type: BotType, message?: string) => void; //
 }) => {
   return (
     //좌우 스크롤 감싸는 래퍼
@@ -57,7 +57,7 @@ const DesktopLayout = ({
                 <ChatBubble
                   type={type as BotType}
                   onClose={() => setActive(null)}
-                  onOpen={() => onOpenChat(type as BotType)}
+                  onOpen={(msg) => onOpenChat(type as BotType, msg)}
                 />
               )}
             </BotWrapper>

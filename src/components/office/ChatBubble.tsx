@@ -10,7 +10,7 @@ const ChatBubble = ({
 }: {
   type: BotType;
   onClose: () => void;
-  onOpen: () => void;
+  onOpen: (initialMessage?: string) => void; // ← 초기 메시지 전달 가능하게
 }) => {
   const bot = botMap[type];
 
@@ -33,6 +33,22 @@ const ChatBubble = ({
       {/* 봇 한줄 소개 */}
       <Content>{bot.preview}</Content>
 
+      {/* 예시 질문 버튼들 */}
+      <SuggestionList>
+        {bot.suggestions.map((s) => (
+          <SuggestionBtn
+            key={s}
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen(s); // 클릭한 질문을 초기 메시지로 전달
+            }}
+          >
+            {s}
+          </SuggestionBtn>
+        ))}
+      </SuggestionList>
+
+      {/* 직접 입력 버튼 */}
       <OpenBtn
         onClick={(e) => {
           e.stopPropagation();
@@ -40,7 +56,7 @@ const ChatBubble = ({
         }}
       >
         {" "}
-        대화하기 →
+        직접 물어보기 →
       </OpenBtn>
     </BubbleContainer>
   );
@@ -132,5 +148,30 @@ const OpenBtn = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.primary};
     color: white;
+  }
+`;
+const SuggestionList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0 8px;
+`;
+
+const SuggestionBtn = styled.button`
+  text-align: left;
+  padding: 6px 10px;
+  border-radius: ${({ theme }) => theme.radius.sm};
+  border: 1px solid ${({ theme }) => theme.colors.surfaceLight};
+  background: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.4;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primarySoft};
   }
 `;
