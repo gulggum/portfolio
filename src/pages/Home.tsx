@@ -7,6 +7,7 @@ import AboutModal from "../components/modals/AboutModal";
 import { useModal } from "../context/ModalContext";
 import SkillsModal from "../components/modals/SkillsModal";
 import ContactModal from "../components/modals/ContactModal";
+import ProjectModal from "../components/modals/ProjectModal";
 
 const Home = () => {
   const { closeModal, modalType } = useModal();
@@ -46,6 +47,7 @@ const Home = () => {
       {modalType === "about" && <AboutModal onClose={closeModal} />}
       {modalType === "skills" && <SkillsModal onClose={closeModal} />}
       {modalType === "contact" && <ContactModal onClose={closeModal} />}
+      {modalType === "projects" && <ProjectModal onClose={closeModal} />}
     </>
   );
 };
