@@ -59,26 +59,20 @@ const ChatModal = ({ type, onClose, initialMessage }: Props) => {
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": import.meta.env.VITE_ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true", // 브라우저 직접 호출 허용
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-haiku-4-5-20251001", // 가장 저렴한 모델
-          max_tokens: 500,
-          system: getSystemPrompt(type), // 봇별 시스템 프롬프트
           messages: updatedMessages,
+          systemPrompt: getSystemPrompt(type),
         }),
       });
 
       const data = await res.json();
-      const reply = data.content[0].text;
-
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.content },
+      ]);
     } catch (err) {
       setMessages((prev) => [
         ...prev,
