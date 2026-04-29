@@ -1,4 +1,3 @@
-// components/modals/ProjectModal.tsx
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import {
@@ -163,6 +162,12 @@ const Overlay = styled.div`
   justify-content: center;
   animation: ${fadeIn} 0.2s ease;
   padding: 20px;
+
+  /* 모바일 */
+  @media (max-width: 768px) {
+    padding: 0;
+    align-items: flex-end; /* 아래에서 올라오는 느낌 */
+  }
 `;
 
 const Modal = styled.div`
@@ -177,6 +182,20 @@ const Modal = styled.div`
   box-shadow: ${({ theme }) => theme.shadow.medium};
   padding: 40px;
   animation: ${slideUp} 0.3s ease;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary};
+    border-radius: 999px;
+  }
+  /* 모바일 */
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+    max-height: 90vh;
+    border-radius: ${({ theme }) => theme.radius.lg};
+  }
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -266,8 +285,14 @@ const ArrowBtn = styled.button<{ $dir: "left" | "right" }>`
     border-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
   }
-`;
 
+  @media (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+`;
+/* 모바일에서 화살표 버튼 작게 */
 const MainCard = styled.div`
   flex: 1;
   background: ${({ theme }) => theme.colors.surfaceLight};
@@ -394,6 +419,9 @@ const SubGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SubCard = styled.div`

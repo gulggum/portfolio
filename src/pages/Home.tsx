@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <>
       {isMobile ? (
-        <MobileLayout setActive={setActive} onOpenChat={handleOpenChat} />
+        <MobileLayout onOpenChat={handleOpenChat} />
       ) : (
         <DesktopLayout
           active={active}

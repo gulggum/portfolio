@@ -27,41 +27,62 @@ const Sidebar = () => {
   ];
 
   return (
-    <Nav
-      $isOpen={isOpen}
-      onMouseEnter={() => setIsOpen(true)} // 호버 시 펼침
-      onMouseLeave={() => setIsOpen(false)} // 호버 끝나면 닫힘
-    >
-      {/* 상단 토글 버튼 */}
-      <TopArea>
-        {isOpen && <LogoText>HEEYEON</LogoText>}
-        <ThemeToggle isDark={isDark} onToggle={onToggle} />
-      </TopArea>
+    <>
+      <Nav
+        $isOpen={isOpen}
+        onMouseEnter={() => setIsOpen(true)} // 호버 시 펼침
+        onMouseLeave={() => setIsOpen(false)} // 호버 끝나면 닫힘
+      >
+        {/* 상단 토글 버튼 */}
+        <TopArea>
+          {isOpen && <LogoText>HEEYEON</LogoText>}
+          <ThemeToggle isDark={isDark} onToggle={onToggle} />
+        </TopArea>
 
-      {/* 네비게이션 항목 */}
-      <NavList>
+        {/* 네비게이션 항목 */}
+        <NavList>
+          {navItems.map((item) => (
+            <NavItem
+              key={item.label} // ← path 대신 label로 (항상 존재)
+              $active={!!item.path && location.pathname === item.path} // ← path 있을 때만 활성화
+              onClick={() => {
+                if (item.action)
+                  item.action(); // 모달 열기
+                else if (item.path) navigate(item.path); // 페이지 이동
+              }}
+            >
+              <IconBox>{item.icon}</IconBox>
+              <Label $isOpen={isOpen}>{item.label}</Label>
+            </NavItem>
+          ))}
+        </NavList>
+      </Nav>
+      {/* 모바일 하단 탭바 */}
+      <BottomNav>
         {navItems.map((item) => (
-          <NavItem
-            key={item.label} // ← path 대신 label로 (항상 존재)
-            $active={!!item.path && location.pathname === item.path} // ← path 있을 때만 활성화
+          <BottomNavItem
+            key={item.label}
+            $active={!!item.path && location.pathname === item.path}
             onClick={() => {
-              if (item.action)
-                item.action(); // 모달 열기
-              else if (item.path) navigate(item.path); // 페이지 이동
+              if (item.action) item.action();
+              else if (item.path) navigate(item.path);
             }}
           >
-            <IconBox>{item.icon}</IconBox>
-            <Label $isOpen={isOpen}>{item.label}</Label>
-          </NavItem>
+            <BottomIcon>{item.icon}</BottomIcon>
+            <BottomLabel>{item.label}</BottomLabel>
+          </BottomNavItem>
         ))}
-      </NavList>
-    </Nav>
+      </BottomNav>
+    </>
   );
 };
 
 export default Sidebar;
 
 const Nav = styled.nav<{ $isOpen: boolean }>`
+  @media (max-width: 768px) {
+    display: none;
+  }
   position: fixed;
   top: 0;
   left: 0;
@@ -145,4 +166,49 @@ const Label = styled.span<{ $isOpen: boolean }>`
   /* 펼쳐질 때 페이드인 */
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transition: opacity 0.2s ease 0.1s; /* 너비 애니메이션 후 텍스트 등장 */
+`;
+
+/* 모바일 하단 탭바 — PC에서 숨기기 */
+const BottomNav = styled.nav`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: ${({ theme }) => theme.colors.surface};
+    border-top: 1px solid ${({ theme }) => theme.colors.surfaceLight};
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 8px 0 20px; /* 하단 safe area */
+  }
+`;
+
+const BottomNavItem = styled.button<{ $active: boolean }>`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary : theme.colors.muted};
+`;
+
+const BottomIcon = styled.span`
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const BottomLabel = styled.span`
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
 `;

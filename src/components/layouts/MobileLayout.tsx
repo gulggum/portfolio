@@ -4,9 +4,12 @@ import type { BotType } from "../../types/robot";
 import { botMap } from "../../data/botMap";
 import { useModal } from "../../context/ModalContext";
 import { useState } from "react";
-import { expandAnim, float, bubbleAnim } from "../../styles/animation";
+import { expandAnim, float } from "../../styles/animation";
 import mobileBg from "../../assets/images/company/office_mobile.png";
+import mobileBgLight from "../../assets/images/company/office_mobile_light.png";
 import mobileBot from "../../assets/images/characters/mobile_bot.png";
+import { useThemeToggle } from "../../context/ThemeContext";
+import { ThemeToggle } from "../ThemeToggle";
 
 // 봇별 포인트 색상
 const botColors: Record<BotType, string> = {
@@ -22,11 +25,11 @@ const defaultBubble = "안녕하세요! 궁금한 내용을\n선택해 주세요
 const MobileLayout = ({
   onOpenChat,
 }: {
-  setActive: (type: BotType) => void;
   onOpenChat: (type: BotType, message?: string) => void;
 }) => {
   const [selectedBot, setSelectedBot] = useState<BotType | null>(null);
   const { openModal } = useModal();
+  const { isDark, onToggle } = useThemeToggle();
 
   // 현재 말풍선 텍스트
   const bubbleText = selectedBot ? botMap[selectedBot].preview : defaultBubble;
@@ -39,8 +42,12 @@ const MobileLayout = ({
     <Container>
       {/* 상단 히어로 영역 */}
       <HeroSection>
-        <BgImage src={mobileBg} alt="background" />
+        <BgImage src={isDark ? mobileBg : mobileBgLight} alt="background" />
         <HeroOverlay />
+        {/* 우측 상단 토글 */}
+        <TopRight>
+          <ThemeToggle isDark={isDark} onToggle={onToggle} />
+        </TopRight>
 
         <HeroContent>
           <Greeting>안녕하세요!</Greeting>
@@ -52,6 +59,7 @@ const MobileLayout = ({
           {/* 봇 이미지 */}
           <BotHeadCharacter src={mobileBot} alt="bot" />
         </BotWrapper>
+        <BottomGradient />
       </HeroSection>
 
       {/* 봇 리스트 */}
@@ -115,19 +123,34 @@ const MobileLayout = ({
 export default MobileLayout;
 
 const Container = styled.div`
-  min-height: 100vh;
+  min-height: 100dvh;
   background: ${({ theme }) => theme.colors.bg};
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 `;
 
 /* 히어로 영역 */
 const HeroSection = styled.div`
   position: sticky;
-
   top: 0;
   z-index: 50;
   height: 280px;
-  overflow: hidden;
+  overflow: visible;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 60px; /* ← 높이 키우기 */
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      ${({ theme }) => theme.colors.bg} /* ← 테마 배경색으로 자연스럽게 */
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
 `;
 
 const BgImage = styled.img`
@@ -172,6 +195,20 @@ const HeroTitle = styled.h1`
   white-space: pre-line;
   line-height: 1.4;
 `;
+const BottomGradient = styled.div`
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    ${({ theme }) => theme.colors.bg}
+  );
+  z-index: 1;
+  pointer-events: none;
+`;
 
 /* 봇 리스트 */
 const ListSection = styled.div`
@@ -180,20 +217,6 @@ const ListSection = styled.div`
   z-index: 10;
   background: ${({ theme }) => theme.colors.bg};
   overflow: visible;
-  /* 상단 그라데이션으로 자연스럽게 */
-  &::before {
-    content: "";
-    position: absolute;
-    top: -30px;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      ${({ theme }) => theme.colors.bg}
-    );
-  }
 `;
 
 const ListLabel = styled.div`
@@ -329,9 +352,16 @@ const BotWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 51;
 `;
 
 const BotHeadCharacter = styled.img`
   max-width: 300px;
   animation: ${float} 3s ease-in-out infinite;
+`;
+const TopRight = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 555;
 `;
