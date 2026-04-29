@@ -273,4 +273,5 @@ const MessageText = styled.p`
   line-height: 1.7;
   color: ${({ theme }) => theme.colors.text} !important;
   margin: 0 !important;
+  white-space: pre-line;
 `;
