@@ -14,7 +14,7 @@ const Home = () => {
   // 현재 클릭된 봇 (null이면 아무것도 안 열림)
   const [active, setActive] = useState<BotType | null>(null);
   // 모바일 여부 감지 (768px 기준)
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   //챗 모달
   const [chatBot, setChatBot] = useState<BotType | null>(null);
   //각페이지별 팝업창
@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <>
       {isMobile ? (
-        <MobileLayout setActive={setActive} />
+        <MobileLayout setActive={setActive} onOpenChat={handleOpenChat} />
       ) : (
         <DesktopLayout
           active={active}

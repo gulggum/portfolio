@@ -14,7 +14,7 @@ export const botMap: Record<
     name: "소개봇",
     image: bot,
     color: "primary",
-    preview: "안녕하세요! 저에 대해 궁금한 게 있으신가요? 👋",
+    preview: "안녕하세요! 저에 대해 궁금한 게 있으신가요? ",
     suggestions: [
       "어떤 사람인가요?",
       "강점이 뭔가요?",
@@ -30,7 +30,7 @@ export const botMap: Record<
     name: "프로젝트봇",
     image: bot,
     color: "primary",
-    preview: "제가 만든 프로젝트들이 궁금하신가요? 🚀",
+    preview: "제가 만든 프로젝트들이 궁금하신가요? ",
     suggestions: [
       "어떤 프로젝트를 만들었나요?",
       "키즈스톡은 어떤 서비스인가요?",
@@ -47,7 +47,7 @@ export const botMap: Record<
     name: "기술스택봇",
     image: bot,
     color: "primary",
-    preview: "기술 스택이 궁금하신가요? 💻",
+    preview: "기술 스택이 궁금하신가요? ",
     suggestions: [
       "주로 쓰는 기술은 뭔가요?",
       "TypeScript 경험이 있나요?",
@@ -63,7 +63,7 @@ export const botMap: Record<
     name: "연락봇",
     image: bot,
     color: "muted",
-    preview: "함께 일하고 싶으시다면 연락주세요! 📬",
+    preview: "함께 일하고 싶으시다면 연락주세요! ",
     suggestions: [
       "어떻게 연락할 수 있나요?",
       "어떤 협업 방식을 선호하나요?",
@@ -79,7 +79,7 @@ export const botMap: Record<
     name: "성장봇",
     image: bot,
     color: "primary",
-    preview: "개발 여정이 궁금하신가요? 🌱",
+    preview: "개발 여정이 궁금하신가요? ",
     suggestions: [
       "개발을 시작한 지 얼마나 됐나요?",
       "어떻게 성장해왔나요?",
