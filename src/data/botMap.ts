@@ -16,9 +16,9 @@ export const botMap: Record<
     color: "primary",
     preview: "이희연님에 대해 궁금한 게 있으신가요? ",
     suggestions: [
-      "어떤 사람인가요?",
+      "어떤 개발자인가요?",
       "강점이 뭔가요?",
-      "개발을 시작한 계기가 있나요?",
+      "왜 개발을 시작했나요?",
     ],
     position: {
       pc: { top: "45%", left: "10%" },
@@ -34,7 +34,7 @@ export const botMap: Record<
     suggestions: [
       "어떤 프로젝트를 만들었나요?",
       "키즈스톡은 어떤 서비스인가요?",
-      "가장 어려웠던 작업은 뭔가요?",
+      "가장 어려웠던 점은?",
       "프로젝트 직접 보고 싶어요!",
     ],
     position: {
@@ -49,9 +49,9 @@ export const botMap: Record<
     color: "primary",
     preview: "기술 스택이 궁금하신가요? ",
     suggestions: [
-      "주로 쓰는 기술은 뭔가요?",
-      "TypeScript 경험이 있나요?",
-      "어떤 기술을 배우고 있나요?",
+      "주로 쓰는 기술은?",
+      "TypeScript 경험 있나요?",
+      "요즘 배우는 기술은?",
     ],
     position: {
       pc: { top: "48%", left: "55%" },
@@ -65,9 +65,9 @@ export const botMap: Record<
     color: "muted",
     preview: "함께 일하고 싶으시다면 연락주세요! ",
     suggestions: [
-      "어떻게 연락할 수 있나요?",
-      "어떤 협업 방식을 선호하나요?",
-      "이력서를 볼 수 있나요?",
+      "연락은 어떻게 하나요?",
+      "협업 스타일은?",
+      "이력서 볼 수 있나요?",
     ],
     position: {
       pc: { top: "53%", left: "78%" },

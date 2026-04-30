@@ -35,7 +35,7 @@ const Intro = () => {
       />
 
       <SubText $isEntering={isEntering}>안녕하세요!</SubText>
-      <Title $isEntering={isEntering}>저희 회사를 소개합니다 ✨</Title>
+      <Title $isEntering={isEntering}>HEEYEON'S PORTFOLIO OFFICE </Title>
 
       <CardWrapper $isEntering={isEntering}>
         {/* secondary 없으니 primary / primarySoft / muted 로 대체 */}

@@ -133,7 +133,7 @@ const HeroSection = styled.div`
   position: sticky;
   top: 0;
   z-index: 50;
-  height: 280px;
+  height: 250px;
   overflow: visible;
 
   &::after {

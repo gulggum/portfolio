@@ -25,7 +25,7 @@ const DesktopLayout = ({
   useEffect(() => {
     if (scrollRef.current) {
       const el = scrollRef.current;
-      el.scrollTop = (el.scrollHeight - el.clientHeight) / 2;
+      el.scrollTop = (el.scrollHeight - el.clientHeight) / 1.5;
     }
   }, []);
   return (
@@ -84,7 +84,6 @@ export default DesktopLayout;
 
 /* 좌우 스크롤 컨테이너 */
 const ScrollWrapper = styled.div`
-  width: 100%;
   height: 100vh;
   overflow-x: auto;
   overflow-y: auto;
