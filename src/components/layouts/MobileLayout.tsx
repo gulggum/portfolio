@@ -5,11 +5,11 @@ import { botMap } from "../../data/botMap";
 import { useModal } from "../../context/ModalContext";
 import { useState } from "react";
 import { expandAnim, float } from "../../styles/animation";
+import { useThemeToggle } from "../../context/ThemeContext";
+import { ThemeToggle } from "../ThemeToggle";
 import mobileBg from "../../assets/images/company/office_mobile.png";
 import mobileBgLight from "../../assets/images/company/office_mobile_light.png";
 import mobileBot from "../../assets/images/characters/mobile_bot.png";
-import { useThemeToggle } from "../../context/ThemeContext";
-import { ThemeToggle } from "../ThemeToggle";
 
 // 봇별 포인트 색상
 const botColors: Record<BotType, string> = {
@@ -237,6 +237,7 @@ const BotCard = styled.div<{ $color: string; $isSelected: boolean }>`
   margin-bottom: 10px;
   overflow: hidden;
   transition: all 0.2s;
+  z-index: 50;
 `;
 
 const BotName = styled.div`
@@ -289,6 +290,7 @@ const BotImg = styled.img`
   width: 32px;
   height: 32px;
   object-fit: contain;
+  pointer-events: none;
 `;
 
 const CardText = styled.div`
@@ -352,7 +354,8 @@ const BotWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 51;
+  z-index: 50;
+  pointer-events: none;
 `;
 
 const BotHeadCharacter = styled.img`
