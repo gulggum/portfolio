@@ -84,6 +84,7 @@ const ToggleWrapper = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.spacing.lg};
   right: ${({ theme }) => theme.spacing.lg};
+  z-index: 555;
 `;
 
 const CompanyImage = styled.img<{ $isEntering: boolean }>`
