@@ -34,10 +34,12 @@ const Sidebar = () => {
         onMouseLeave={() => setIsOpen(false)} // 호버 끝나면 닫힘
       >
         {/* 상단 토글 버튼 */}
-        <TopArea>
-          {isOpen && <LogoText>HEEYEON</LogoText>}
-          <ThemeToggle isDark={isDark} onToggle={onToggle} />
-        </TopArea>
+        {isOpen && (
+          <TopArea>
+            {isOpen && <LogoText>HEEYEON</LogoText>}
+            <ThemeToggle isDark={isDark} onToggle={onToggle} />
+          </TopArea>
+        )}
 
         {/* 네비게이션 항목 */}
         <NavList>
