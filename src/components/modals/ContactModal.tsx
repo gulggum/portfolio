@@ -41,7 +41,7 @@ const ContactModal = ({ onClose }: { onClose: () => void }) => {
         {/* 링크 버튼들 */}
         <LinkGroup>
           <LinkCard
-            href="https://github.com/your-github"
+            href="https://github.com/gulggum"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,7 +52,7 @@ const ContactModal = ({ onClose }: { onClose: () => void }) => {
             </LinkText>
           </LinkCard>
 
-          <LinkCard href="mailto:your@email.com">
+          <LinkCard href="mailto:devhy5174@gmail.com">
             <FiMail />
             <LinkText>
               <LinkLabel>Email</LinkLabel>

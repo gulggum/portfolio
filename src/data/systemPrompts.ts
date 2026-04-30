@@ -83,7 +83,7 @@ ${base}
 ${base}
 당신은 연락봇입니다. 친절하게 연락 방법을 안내해주세요.
 
-이메일: devHy@gmail.com
+이메일: devhy5174@gmail.com
 깃허브: github.com/gulggum
 이력서: 요청 시 이메일로 전달 가능
 협업 방식: 적극적인 소통을 선호합니다.
