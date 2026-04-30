@@ -126,6 +126,7 @@ const Container = styled.div`
   min-height: 100dvh;
   background: ${({ theme }) => theme.colors.bg};
   padding-bottom: 80px;
+  overflow: hidden;
 `;
 
 /* 히어로 영역 */
