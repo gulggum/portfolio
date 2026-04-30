@@ -307,17 +307,3 @@ const PeriodBadge = styled.span`
   padding: 3px 10px;
   border-radius: 999px;
 `;
-
-const PeriodReason = styled.span`
-  font-size: 13px;
-  color: ${({ theme }) => theme.colors.muted};
-`;
-
-const GrowthMessage = styled.p`
-  margin-top: 16px;
-  font-size: 13px;
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.muted};
-  border-left: 3px solid ${({ theme }) => theme.colors.primary};
-  padding-left: 12px;
-`;
