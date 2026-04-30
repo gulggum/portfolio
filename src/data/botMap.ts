@@ -14,7 +14,7 @@ export const botMap: Record<
     name: "소개봇",
     image: bot,
     color: "primary",
-    preview: "안녕하세요! 저에 대해 궁금한 게 있으신가요? ",
+    preview: "이희연님에 대해 궁금한 게 있으신가요? ",
     suggestions: [
       "어떤 사람인가요?",
       "강점이 뭔가요?",
@@ -30,7 +30,7 @@ export const botMap: Record<
     name: "프로젝트봇",
     image: bot,
     color: "primary",
-    preview: "제가 만든 프로젝트들이 궁금하신가요? ",
+    preview: "프로젝트들이 궁금하신가요? ",
     suggestions: [
       "어떤 프로젝트를 만들었나요?",
       "키즈스톡은 어떤 서비스인가요?",
@@ -81,9 +81,9 @@ export const botMap: Record<
     color: "primary",
     preview: "개발 여정이 궁금하신가요? ",
     suggestions: [
-      "개발을 시작한 지 얼마나 됐나요?",
-      "어떻게 성장해왔나요?",
-      "앞으로 목표가 뭔가요?",
+      "개발을 시작하게 된 계기가 궁금해요",
+      "어떤 과정을 거쳐 성장했나요?",
+      "앞으로 어떤 개발자가 되고 싶나요?",
     ],
     position: {
       pc: { top: "75%", left: "88%" },

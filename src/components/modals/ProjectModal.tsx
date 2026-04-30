@@ -342,6 +342,7 @@ const ProjectDesc = styled.p`
   line-height: 1.7;
   color: ${({ theme }) => theme.colors.muted} !important;
   margin: 0 0 20px 0 !important;
+  white-space: pre-line;
 `;
 
 const LinkRow = styled.div`

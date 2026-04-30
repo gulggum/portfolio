@@ -50,9 +50,25 @@ const AboutModal = ({ onClose }: { onClose: () => void }) => {
 
         {/* 성장 과정 */}
         <Section>
-          <SectionTitle>📈 성장 과정</SectionTitle>
+          <SectionTitle>📈 개발 성장 과정</SectionTitle>
           <GrowthList>
             {profileData.growth.map((item, i) => (
+              <GrowthItem key={i} $delay={i * 0.05}>
+                <GrowthIndex>0{i + 1}</GrowthIndex>
+                <GrowthText>{item}</GrowthText>
+              </GrowthItem>
+            ))}
+          </GrowthList>
+        </Section>
+        <Divider />
+        <Section>
+          <SectionTitle>🌱 커리어 전환 성장 과정</SectionTitle>
+          {/* 활동 리스트 */}
+          <PeriodRow>
+            <PeriodBadge>{profileData.career.careerGap.period}</PeriodBadge>
+          </PeriodRow>
+          <GrowthList>
+            {profileData.career.careerGap.activity.map((item, i) => (
               <GrowthItem key={i} $delay={i * 0.05}>
                 <GrowthIndex>0{i + 1}</GrowthIndex>
                 <GrowthText>{item}</GrowthText>
@@ -65,7 +81,7 @@ const AboutModal = ({ onClose }: { onClose: () => void }) => {
 
         {/* 면접용 메시지 */}
         <MessageBox>
-          <MessageLabel>✉️ 면접관께</MessageLabel>
+          <MessageLabel>✉️ 자기소개서</MessageLabel>
           <MessageText>{profileData.candidateMessage}</MessageText>
         </MessageBox>
       </Modal>
@@ -255,7 +271,7 @@ const GrowthText = styled.span`
 /* 면접 메시지 */
 const MessageBox = styled.div`
   background: ${({ theme }) => theme.colors.primarySoft};
-  border-left: 3px solid ${({ theme }) => theme.colors.primary};
+
   border-radius: ${({ theme }) => theme.radius.md};
   padding: 20px;
 `;
@@ -274,4 +290,34 @@ const MessageText = styled.p`
   color: ${({ theme }) => theme.colors.text} !important;
   margin: 0 !important;
   white-space: pre-line;
+`;
+//커리어 전환과정
+const PeriodRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+`;
+
+const PeriodBadge = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  background: ${({ theme }) => theme.colors.primary}20;
+  color: ${({ theme }) => theme.colors.primary};
+  padding: 3px 10px;
+  border-radius: 999px;
+`;
+
+const PeriodReason = styled.span`
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.muted};
+`;
+
+const GrowthMessage = styled.p`
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.colors.muted};
+  border-left: 3px solid ${({ theme }) => theme.colors.primary};
+  padding-left: 12px;
 `;

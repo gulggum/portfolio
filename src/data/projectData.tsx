@@ -16,7 +16,7 @@ export const projects: Project[] = [
     name: "키즈스톡",
     thumbnail: "/src/assets/images/projects/kidsStock.png",
     description:
-      "어린이가 금융 개념을 직관적으로 이해하기 어렵다는 문제를 해결하기 위해, 게임형 UI와 단계별 인터랙션을 설계한 금융 교육 서비스입니다. TanStack Query를 활용해 서버 상태를 관리하고 비동기 데이터 흐름을 안정적으로 처리했으며, Context API로 전역 상태를 분리해 컴포넌트 구조의 복잡도를 낮췄습니다. AI 도구를 활용해 개발 생산성을 높였지만, 코드 구조와 상태 관리 방식은 직접 이해하고 설계하며 구현했습니다.",
+      "어린이 금융 교육을 위한 게임형 UI 서비스입니다.\nTanStack Query로 서버 상태를 관리하고, Context API로 전역 상태를 분리했습니다.\nAI 도구를 활용하되, 구조와 설계는 직접 이해하며 구현했습니다.",
     techStack: [
       "React",
       "TypeScript",
@@ -31,11 +31,30 @@ export const projects: Project[] = [
     isMain: true,
   },
   {
+    id: "portfolio",
+    name: "AI 포트폴리오",
+    thumbnail: "/src/assets/images/projects/portfolio.png",
+    description:
+      "면접관이 AI 봇에게 직접 질문하는 포트폴리오. \n사무실 배경 위에 역할별 봇을 배치하고 Claude API를 연결해 자유롭게 대화할 수 있도록 설계했습니다.",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "styled-components",
+      "Claude API",
+      "Context API",
+      "Vercel",
+    ],
+    deployUrl: "https://portfolio-sigma-seven-ujq42n81oj.vercel.app/",
+    githubUrl: "https://github.com/gulggum/portfolio",
+    isMain: true,
+  },
+  {
     id: "pokemon",
     name: "포켓몬 도감",
     thumbnail: "/src/assets/images/projects/pokemon.png",
     description:
-      "PokeAPI를 활용하여 비동기 데이터 처리와 상태 관리 흐름을 학습하기 위해 제작한 프로젝트입니다. API 요청 과정에서 로딩 및 에러 상태를 분리하여 사용자 경험을 개선했으며, 컴포넌트 단위로 책임을 나누어 재사용성을 고려한 구조로 구현했습니다.",
+      "PokeAPI를 활용하여 비동기 데이터 처리와 상태 관리 흐름을 학습하기 위해 제작한 프로젝트입니다.\n API 요청 과정에서 로딩 및 에러 상태를 분리하여 사용자 경험을 개선했으며, 컴포넌트 단위로 책임을 나누어 재사용성을 고려한 구조로 구현했습니다.",
     techStack: ["React", "TypeScript", "Vite", "API"],
     deployUrl: "https://gulggum.github.io/pokemon-drawing-book-react/",
     githubUrl: "https://github.com/gulggum/pokemon-drawing-book-react",
@@ -46,7 +65,7 @@ export const projects: Project[] = [
     name: "푸드 쇼핑몰",
     thumbnail: "/src/assets/images/projects/food-shop.png",
     description:
-      "프레임워크 없이 순수 JavaScript로 구현한 쇼핑몰 프로젝트입니다. DOM 조작과 이벤트 흐름을 직접 제어하며 웹의 기본 동작 원리를 이해하는 데 집중했습니다. 이벤트 위임을 활용해 불필요한 렌더링을 줄이고, 상태 기반 UI 업데이트 구조를 적용했습니다.",
+      "프레임워크 없이 순수 JavaScript로 구현한 쇼핑몰 프로젝트입니다. \nDOM 조작과 이벤트 흐름을 직접 제어하며 웹의 기본 동작 원리를 이해하는 데 집중했습니다. 이벤트 위임을 활용해 불필요한 렌더링을 줄이고, 상태 기반 UI 업데이트 구조를 적용했습니다.",
     techStack: ["HTML", "CSS", "JavaScript"],
     deployUrl: "https://gulggum.github.io/shop-clone-project/",
     githubUrl: "https://github.com/gulggum/shop-clone-project",
@@ -63,6 +82,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gulggum/React-shop-app",
     isMain: false,
   },
+
   {
     id: "vue-shop",
     name: "쇼핑몰 (Vue)",

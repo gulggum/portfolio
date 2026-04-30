@@ -13,7 +13,7 @@ const MyCharacter = () => {
         <Bubble onClick={() => setVisible(false)}>
           <BubbleTail />
           <BubbleText>
-            안녕하세요! 👋 저는 <Strong>이희연</Strong>이에요.
+            안녕하세요! 👋 <br /> 저는 <Strong>이희연</Strong>이에요.
             <br />
             각 봇을 클릭하면 저에 대해
             <br />
