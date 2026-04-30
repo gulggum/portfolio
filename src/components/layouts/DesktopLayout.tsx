@@ -7,6 +7,7 @@ import { botMap } from "../../data/botMap";
 import ChatBubble from "../office/ChatBubble";
 import pcBg from "../../assets/images/company/office_PC.png";
 import MyCharacter from "../office/MyCharacter";
+import { useEffect, useRef } from "react";
 
 const DesktopLayout = ({
   active,
@@ -19,10 +20,18 @@ const DesktopLayout = ({
   botSize: number;
   onOpenChat: (type: BotType, message?: string) => void; //
 }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  // 마운트 시 가로 중앙으로 스크롤
+  useEffect(() => {
+    if (scrollRef.current) {
+      const el = scrollRef.current;
+      el.scrollTop = (el.scrollHeight - el.clientHeight) / 2;
+    }
+  }, []);
   return (
     //좌우 스크롤 감싸는 래퍼
-    <ScrollWrapper>
-      <Stage>
+    <ScrollWrapper ref={scrollRef}>
+      <Stage onClick={() => setActive(null)}>
         {/* 배경 이미지 — 원본 사이즈 고정으로 좌우 스크롤 가능 */}
         <BgImage src={pcBg} />
         <MyCharacter />
@@ -35,7 +44,10 @@ const DesktopLayout = ({
               $delay={index * 0.1}
               $top={pos.top}
               $left={pos.left}
-              onClick={() => setActive(type as BotType)}
+              onClick={(e) => {
+                e.stopPropagation(); //Stage까지 전달 안되게 버블링 막기
+                setActive(type as BotType);
+              }}
             >
               <Bot
                 src={bot.image}
