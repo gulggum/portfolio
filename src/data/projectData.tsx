@@ -5,6 +5,7 @@ import foodShopImg from "../assets/images/projects/food-shop.png";
 import reactShopImg from "../assets/images/projects/react-shop.png";
 import vueShopImg from "../assets/images/projects/vue-shop.png";
 import todoImg from "../assets/images/projects/todo.png";
+import togetherWalk from "../assets/images/projects/togetherWalk.png";
 
 export interface Project {
   id: string;
@@ -18,6 +19,27 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "walktogether",
+    name: "함께걸어요",
+    thumbnail: togetherWalk,
+    description:
+      "걷기·러닝 습관을 게임처럼 즐길 수 있는 모바일 피트니스 커뮤니티 서비스입니다.\n실시간 운동 트래킹, 파티 시스템, 캐릭터 성장 요소를 결합해 운동을 지속할 수 있도록 설계했습니다.\nSupabase Realtime과 알림 시스템을 활용해 사용자 간 상호작용을 강화했습니다.",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+      "React Router",
+      "i18next",
+      "PWA",
+      "Web Push",
+    ],
+    deployUrl: "https://workout-app-gules-iota.vercel.app/",
+    githubUrl: "https://github.com/devhy5174/workout-app",
+    isMain: true,
+  },
   {
     id: "kidstock",
     name: "키즈스톡",

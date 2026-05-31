@@ -13,10 +13,12 @@ import {
   SiVercel,
   SiGit,
   SiRedux,
+  SiTailwindcss,
+  SiAndroidstudio,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { TbLayoutGrid, TbLayoutColumns } from "react-icons/tb";
-import { FiCode } from "react-icons/fi";
+import { FiActivity, FiBell, FiCode, FiSmartphone } from "react-icons/fi";
 
 // 기술스택 데이터 — 아이콘이랑 색상 직접 지정
 const skillGroups = [
@@ -29,6 +31,7 @@ const skillGroups = [
       { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
       { name: "React", icon: <SiReact />, color: "#61DAFB" },
       { name: "Vite", icon: <SiVite />, color: "#646CFF" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06B6D4" },
       {
         name: "styled-components",
         icon: <SiStyledcomponents />,
@@ -41,6 +44,8 @@ const skillGroups = [
     category: "Backend & DB",
     skills: [
       { name: "Supabase", icon: <SiSupabase />, color: "#3ECF8E" },
+      { name: "Supabase Auth", icon: <SiSupabase />, color: "#3ECF8E" },
+      { name: "Supabase Realtime", icon: <SiSupabase />, color: "#3ECF8E" },
       { name: "Vercel", icon: <SiVercel />, color: "#000000" },
     ],
   },
@@ -68,7 +73,12 @@ const skillGroups = [
   },
   {
     category: "학습 중 🌱",
-    skills: [{ name: "풀스택 전환 목표", icon: <FiCode />, color: "#0ABAB5" }],
+    skills: [
+      { name: "PWA", icon: <FiSmartphone />, color: "#0ABAB5" },
+      { name: "Web Push", icon: <FiBell />, color: "#0ABAB5" },
+      { name: "Health Connect", icon: <FiActivity />, color: "#0ABAB5" },
+      { name: "Android Studio", icon: <SiAndroidstudio />, color: "#3DDC84" },
+    ],
   },
 ];
 

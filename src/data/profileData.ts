@@ -57,6 +57,47 @@ export const profileData = {
   // 📌 프로젝트
   projects: [
     {
+      name: "함께걸어요 (Walk Together)",
+
+      description:
+        "걷기와 러닝을 꾸준히 이어갈 수 있도록 돕는 운동 습관 형성 플랫폼입니다. 실시간 운동 기록, 파티 시스템, 캐릭터 성장 요소를 결합하여 사용자들이 서로 동기부여를 주고받으며 운동을 지속할 수 있도록 설계했습니다.",
+
+      techStack: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Supabase",
+        "React Router",
+        "Supabase Realtime",
+        "Web Push",
+        "PWA",
+        "Vercel",
+        "i18next",
+      ],
+
+      highlights: [
+        "실시간 운동 세션(active_sessions) 기반 파티원 활동 상태 공유 기능 구현",
+        "Supabase Realtime을 활용한 파티 응원 메시지 및 공지사항 실시간 동기화",
+        "걸음 수, 거리, 칼로리, 운동 시간 기록 및 운동 이력 저장 기능 구현",
+        "캐릭터 성장 요소와 연속 운동(스트릭) 시스템 설계",
+        "파티 생성·참여·관리 기능 및 실시간 파티 현황 대시보드 구현",
+        "이벤트 및 보상 시스템 구축 (개인·파티·연속 운동 이벤트)",
+        "Web Push + Service Worker 기반 알림 시스템 구현",
+        "Supabase Edge Function 및 pg_cron을 활용한 자동 알림 발송 기능 구현",
+        "사용자 신체 정보 기반 맞춤형 식단 추천 및 칼로리 계산 기능 구현",
+        "관리자 페이지를 통한 공지사항, 이벤트, 콘텐츠 관리 기능 구현",
+        "다국어(i18next) 지원을 통한 한국어·영어 서비스 제공",
+        "Google Play Console 내부 테스트 및 비공개 테스트 배포 경험",
+        "AAB 빌드, 앱 서명, SHA1 인증서 및 업로드 키 관리 경험",
+        "Health Connect 및 안드로이드 걸음 센서 연동 기반 만보기 기능 구현",
+        "실제 사용자 피드백을 바탕으로 운동 기록, 알림, 걸음 수 집계 기능 개선",
+      ],
+
+      insight:
+        "혼자 운동하면 쉽게 포기하는 문제를 해결하고 싶어 시작한 프로젝트입니다. 단순히 운동 기록을 남기는 앱이 아니라, 사용자들이 함께 운동하며 동기부여를 얻을 수 있는 커뮤니티 경험을 만드는 데 집중했습니다. 기획부터 UI/UX 설계, 데이터베이스 구조 설계, 실시간 기능 구현, Android 배포까지 전 과정을 직접 경험하며 서비스 개발 역량을 키웠고, 실제 사용자의 피드백을 반영하며 서비스를 지속적으로 개선해 나가고 있습니다.",
+    },
+    {
       name: "키즈스톡 (KidsStock)",
       description:
         "어린이를 위한 주식 시장 교육 시뮬레이션 앱. 가상 화폐, 레벨/업적 시스템, 퀴즈, 출석 보상 등 게이미피케이션 요소로 경제 개념을 재미있게 학습할 수 있도록 설계했습니다.",
@@ -121,18 +162,41 @@ export const profileData = {
       "React",
       "TypeScript",
       "JavaScript",
-      "styled-components",
       "Vite",
+      "Tailwind CSS",
+      "React Router",
       "HTML/CSS",
-      "Sass",
+      "i18next",
     ],
-    backend: ["Supabase", "Vercel Serverless Functions"],
-    state: ["Context API", "TanStack Query", "Redux (기초)"],
-    tools: ["Git", "VSCode", "Vercel", "Figma", "AI 이미지 생성 툴"],
+
+    backend: [
+      "Supabase",
+      "Supabase Auth",
+      "Supabase Realtime",
+      "Supabase Edge Functions",
+      "PostgreSQL",
+    ],
+
+    state: ["Context API", "React Hooks", "Supabase Realtime State Management"],
+
+    tools: [
+      "Git",
+      "GitHub",
+      "VSCode",
+      "Vercel",
+      "Figma",
+      "Android Studio",
+      "Google Play Console",
+      "Claude",
+      "ChatGPT",
+    ],
+
     learning: [
-      "Supabase를 통해 DB 구조와 권한 설정을 직접 다뤄본 경험",
-      "프론트엔드 개발을 기반으로 백엔드 흐름에 대한 이해를 확장 중",
-      "Claude API 등 AI 서비스 통합 경험 쌓는 중",
+      "실시간 데이터 동기화 및 사용자 상태 관리 경험",
+      "Supabase 기반 인증, DB, Realtime 기능 구현 경험",
+      "RLS 권한 설정 및 데이터 접근 제어 경험",
+      "Android 앱 배포 및 운영 경험",
+      "실제 사용자 피드백 기반 서비스 개선 경험",
     ],
   },
 
@@ -176,15 +240,15 @@ export const profileData = {
   },
 
   // 💬 면접용 메시지
-  candidateMessage: `안녕하세요, 사용자 경험을 중요하게 생각하며 개발하는 프론트엔드 개발자입니다.
+  candidateMessage: `안녕하세요. 사용자 경험을 중요하게 생각하며 실제 서비스를 만들고 개선하는 프론트엔드 개발자입니다.
 
-기능이 동작하는 것에서 멈추지 않고, 왜 이렇게 동작하는지 구조를 이해하려는 특징이 있습니다. HTML/CSS부터 시작해 JavaScript, React, TypeScript까지 단계적으로 학습했고, Supabase를 활용해 인증, 데이터 저장, 권한 설정까지 연결되는 흐름을 직접 경험했습니다.
+HTML/CSS부터 JavaScript, React, TypeScript까지 단계적으로 학습하며 웹 서비스를 개발해왔고, Supabase를 활용해 인증, 데이터베이스, 실시간 기능까지 연결되는 전체 흐름을 직접 경험했습니다.
 
-대표 프로젝트인 ‘키즈스톡’을 통해 상태 관리와 데이터 흐름 문제를 실제로 겪고 해결했습니다. Context가 분산되며 상태 흐름이 꼬이고, isLoading이 false로 내려가지 않아 무한 로딩이 발생하는 문제를 비동기 흐름 관점에서 분석하고 try/finally 구조로 해결했습니다. 이후 Context를 도메인 단위로 통합하고 Provider 구조를 정리해 전역 상태를 개선했습니다.
+대표 프로젝트로 어린이 경제 교육 서비스 '키즈스톡'과 운동 습관 형성 플랫폼 '함께걸어요'를 개발했습니다. 키즈스톡에서는 상태 관리 구조 개선, 비동기 처리 문제 해결, 데이터 흐름 분석 경험을 쌓았고, 함께걸어요에서는 실시간 운동 기록, 파티 시스템, 알림 기능, 이벤트 시스템 등을 구현하며 실제 서비스 운영 경험을 쌓았습니다.
 
-또한 localStorage와 DB가 혼용되면서 데이터가 초기화된 것처럼 보이는 문제를 겪었고, DB 확인과 코드 추적을 통해 UI 로직 문제임을 파악하고 수정했습니다. 이 과정에서 데이터 저장과 표현을 구분해서 보는 기준을 갖게 되었습니다.
+개발 과정에서 Context 구조로 인해 상태 흐름이 복잡해지는 문제, 비동기 처리 과정에서 발생한 무한 로딩 문제, 데이터 저장과 UI 표현이 불일치하는 문제 등을 직접 분석하고 해결했습니다. 또한 Supabase RLS 권한 설정, 실시간 데이터 동기화, Android 배포 과정까지 경험하며 서비스가 실제 사용자에게 전달되는 전체 과정을 이해하게 되었습니다.
 
-Google Play 배포 과정에서는 keystore와 SHA1 문제를 직접 해결하며 빌드와 배포 흐름까지 경험했습니다.
+Google Play Console을 통한 테스트 배포와 운영 경험이 있으며, 실제 사용자 피드백을 반영해 기능을 개선하고 버그를 수정하는 과정을 반복하며 서비스를 발전시키고 있습니다.
 
-AI를 활용해 빠르게 구현하지만, 그대로 사용하는 것이 아니라 코드 흐름과 구조를 이해한 뒤 적용하는 방식을 사용합니다. 문제를 만나면 원인을 추적하고 구조적으로 해결하려는 개발자입니다.`,
+AI 도구를 적극 활용하지만 단순히 결과를 사용하는 것이 아니라, 기능의 동작 원리와 데이터 흐름을 이해하고 검증하는 방식으로 개발합니다. 새로운 기술을 빠르게 학습하고 문제의 원인을 추적하며 해결하는 개발자가 되고자 합니다.`,
 };
