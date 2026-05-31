@@ -18,7 +18,7 @@ import {
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { TbLayoutGrid, TbLayoutColumns } from "react-icons/tb";
-import { FiActivity, FiBell, FiCode, FiSmartphone } from "react-icons/fi";
+import { FiActivity, FiBell, FiSmartphone } from "react-icons/fi";
 
 // 기술스택 데이터 — 아이콘이랑 색상 직접 지정
 const skillGroups = [
